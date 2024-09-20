@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Pig Photo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('./resource/back3.webp'); /* Путь к вашей картинке */
+            background-size: auto; /* Устанавливает оригинальный размер изображения */
+            background-position: top left; /* Начинает повторение с верхнего левого угла */
+            background-repeat: repeat; /* Повторяет изображение по вертикали и горизонтали */
+        }
+        img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid #333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img id="randomPig" src="" alt="Random Pig">
+    <script>
+        // Количество фотографий свиней, которые у вас есть в папке
+        const totalImages = 3; // Укажите общее количество фотографий
+
+        // Функция для выбора случайного номера и создания пути к изображению
+        function getRandomImagePath() {
+            const randomNumber = Math.floor(Math.random() * totalImages) + 1; // Случайное число от 1 до totalImages
+            return `pics/pig${randomNumber}.jpg`; // Путь к изображению
+        }
+
+        // Установить случайное изображение при загрузке страницы
+        document.getElementById('randomPig').src = getRandomImagePath();
+    </script>
+</body>
+</html>
