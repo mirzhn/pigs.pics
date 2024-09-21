@@ -8,6 +8,7 @@
     <meta name="description" content="Enjoy random photos of pigs every time you visit. Click to see random pig pictures.">
     <meta name="keywords" content="photo of pigs, pig images, pig pictures, random pig photos">
     <meta name="robots" content="index, follow">
+    <link rel="icon" href="./resource/logo.ico" type="image/x-icon">
     <title>Random Pig Photo</title>
     <style>
         body {
@@ -28,8 +29,12 @@
             border-radius: 10px;
         }
     </style>
+    <link rel="stylesheet" href="./resource/loader.css">
 </head>
 <body>
+    <div class="loader">
+        <div class="loading-animation"></div>
+    </div>
     <img id="randomPig" src="" alt="Random Pig">
     <script>
         // Количество фотографий свиней, которые у вас есть в папке
@@ -43,6 +48,10 @@
 
         // Установить случайное изображение при загрузке страницы
         document.getElementById('randomPig').src = getRandomImagePath();
+
+        window.addEventListener("load", function() {
+                setTimeout('document.querySelector("body").classList.add("loaded");', 0);       
+            });
     </script>
 </body>
 </html>
