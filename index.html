@@ -28,6 +28,13 @@
             border: 5px solid #333;
             border-radius: 10px;
         }
+        .hidden {
+            display: none; /* Скрывает изображение */
+        }
+
+        .loaded-img {
+            display: block; /* Показывает изображение после загрузки */
+        }
     </style>
     <link rel="stylesheet" href="./resource/loader.css">
 </head>
@@ -35,23 +42,29 @@
     <div class="loader">
         <div class="loading-animation"></div>
     </div>
-    <img id="randomPig" src="" alt="Random Pig">
+    <img id="randomPig" src="" alt="Random Pig" class="hidden">
     <script>
-        // Количество фотографий свиней, которые у вас есть в папке
-        const totalImages = 109; // Укажите общее количество фотографий
+        const totalImages = 109;
 
-        // Функция для выбора случайного номера и создания пути к изображению
         function getRandomImagePath() {
-            const randomNumber = Math.floor(Math.random() * totalImages) + 1; // Случайное число от 1 до totalImages
-            return `pics/pig${randomNumber}.jpg`; // Путь к изображению
+            const randomNumber = Math.floor(Math.random() * totalImages) + 1;
+            return `pics/pig${randomNumber}.jpg`;
         }
 
-        // Установить случайное изображение при загрузке страницы
-        document.getElementById('randomPig').src = getRandomImagePath();
+        const imgElement = document.getElementById('randomPig');
+        imgElement.src = getRandomImagePath();
+
+        // Показать изображение только после полной загрузки
+        imgElement.onload = function () {
+            imgElement.classList.remove('hidden');
+            imgElement.classList.add('loaded-img');
+            // Скрываем лоадер после загрузки изображения
+            document.querySelector('body').classList.add('loaded');
+        };
 
         window.addEventListener("load", function() {
-                setTimeout('document.querySelector("body").classList.add("loaded");', 0);       
-            });
+            setTimeout('document.querySelector("body").classList.add("loaded");', 0);
+        });
     </script>
 </body>
 </html>
